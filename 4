@@ -1,0 +1,30 @@
+#include <stdio.h>
+#include <stdbool.h>
+
+#define V 5
+
+// 그래프가 인접 행렬로 표현됩니다
+int graph[V][V] = {
+    {0, 1, 0, 1, 0},
+    {1, 0, 1, 1, 1},
+    {0, 1, 0, 0, 1},
+    {1, 1, 0, 0, 1},
+    {0, 1, 1, 1, 0}
+};
+
+// 해밀턴 회로를 저장하는 배열
+int path[V];
+
+// 해당 정점을 방문 가능한지 확인하는 함수
+bool isSafe(int v, int graph[V][V], int path[], int pos) {
+    // 현재 정점과 마지막 정점이 인접하지 않으면 false를 반환
+    if (graph[path[pos - 1]][v] == 0)
+        return false;
+
+    // 현재 정점이 이미 경로에 포함되어 있으면 false를 반환
+    for (int i = 0; i < pos; i++)
+        if (path[i] == v)
+            return false;
+
+    return true;
+}
