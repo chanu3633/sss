@@ -1,0 +1,35 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+
+int B(int num1,float num2);
+
+int main(void){
+
+    srand(time(NULL));
+    int array[20] = {0};
+    int i;
+    float j;
+    int num1 = 0;
+
+    float num2 = 0;
+
+    scanf("%d", &num1);
+    scanf("%f", &num2);
+
+    for(i = 0; i < 20; i++){
+
+     array[i] = B(num1, num2);
+     printf("%d\n", array[i]);
+
+
+    }
+
+    for(i = 0; i < 20; i++){
+         j= j + array[i];
+    }
+
+    printf("%lf\n", j/20);
+
+    return 0;
+}
