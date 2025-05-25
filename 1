@@ -1,18 +1,28 @@
+#include <sys/types.h>
 #include <stdio.h>
-#include <stdlib.h>
+#include <unistd.h>
 
-// 배열의 최대 크기를 정의
-#define MAX 10
 
-// 주어진 배열에서 최대 값을 찾는 함수
-int getMax(int array[], int size) {
-    int max = array[0];
-    for (int i = 1; i < size; i++) {
-        if (array[i] > max) {
-            max = array[i];
-        }
+
+int main(void){
+
+    pid_t pid;
+    pid = fork();
+    if(pid < 0){
+        fprintf(stderr, "fork error");
+        return 1;
     }
-    return max;
+    else if(pid == 0){
+        execlp("/bin/ls", "ls", "-l", NULL);
+    }
+    else{
+        wait(NULL);
+        printf("child complete\n");
+    }
+
+    return 0;
+
+    
+
+    
 }
-
-
